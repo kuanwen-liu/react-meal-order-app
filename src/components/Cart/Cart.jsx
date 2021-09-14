@@ -2,11 +2,28 @@ import React from "react";
 
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
 
 const Cart = (props) => {
+  const cartItems = (
+    <ul className={classes["cart-items"]}>
+      {[
+        {
+          id: "m1",
+          name: "Sushi",
+          description: "Finest fish and veggies",
+          price: 22.99,
+          amount: 1,
+        },
+      ].map((meal) => (
+        <CartItem key={meal.id} {...meal} />
+      ))}
+    </ul>
+  );
+
   return (
     <Modal onClose={props.onClose}>
-      <div className={classes["cart-items"]}></div>
+      {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>$55</span>
